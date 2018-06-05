@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Hello World</title>
+
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.1/react-dom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/create-react-class@15.6.2/create-react-class.js"></script>
+  <script src="https://unpkg.com/react@15/dist/react-with-addons.js"></script>
+
+
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  var MessageBox = React.createClass({
+    getInitialState: function () {
+      console.log('getInitialState');
+      return {
+        count: 0,
+      }
+    },
+    shouldComponentUpdate: function (nextProps, nextState) {
+      console.log('shouldComponentUpdate');
+      if(nextState.count>10) return false;
+      return true;
+    },
+    componentWillUpdate: function (nextProps, nextState) {
+      console.log('componentWillUpdate');
+    },
+    componentDidUpdate(){
+      console.log('componentDidUpdate');
+    },
+    doUpdate: function () {
+      this.setState({
+        count: this.state.count += 1,
+      })
+    },
+    render: function () {
+      console.log('render');
+      return (
+        <div>
+          <h1>计数：{this.state.count}</h1>
+          <button onClick={this.doUpdate}>更新 </button>
+          <SubComponent count = {this.state.count}/>
+        </div>
+      )
+    }
+  });
+  var SubComponent = React.createClass({
+    componentWillReceiveProps:function (nextProps,nextState) {
+
+    },
+    shouldComponentUpdate: function (nextProps, nextState) {
+      if(nextProps.count>3) return false;
+      return true;
+    },
+    render: function () {
+      return (
+        <div>
+          <h1>{this.props.count}</h1>
+        </div>
+      )
+    }
+  })
+  ReactDOM.render(
+    <MessageBox/>,
+    document.getElementById('root'),
+    function () {
+      console.log('渲染完成');
+    }
+  )
+
+</script>
+</body>
+</html>

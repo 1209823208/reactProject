@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.1/react-dom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/create-react-class@15.6.2/create-react-class.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react-with-addons.js"></script>
+
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      var MessageBox = React.createClass({
+        mixins:[React.addons.LinkedStateMixin],//添加引用
+        getInitialState:function () {
+          return {
+            message:'A',
+            isReactTrue:false,
+          }
+        },
+        render:function () {
+          return (
+            <div>
+              <h1>我想说：{this.state.message}</h1>
+              <h2>React是不是很好用？{this.state.isReactTrue?'非常好用':'一般般'}</h2>
+              <div>
+                <input type="text" valueLink={this.linkState('message')}/>
+              </div>
+              <div>
+                <input type="checkbox" checkedLink={this.linkState('isReactTrue')}/>
+              </div>
+              <SubSubComp  messageLink = {this.linkState('message')} isReactTrueLink={this.linkState('isReactTrue')} />
+            </div>
+            )
+        }
+      });
+      var SubSubComp = React.createClass({
+        render:function () {
+          return (
+            <div>
+              <h4>子组件修改父组件值</h4>
+              <input type="text" valueLink={this.props.messageLink}/>
+              <br/>
+              <input type="checkbox" checkedLink={this.props.isReactTrueLink}/>
+            </div>
+          )
+        }
+      })
+
+      ReactDOM.render(
+        <MessageBox/>,
+        document.getElementById('root'),
+        function () {
+          console.log('渲染完成');
+        }
+      )
+
+    </script>
+  </body>
+</html>

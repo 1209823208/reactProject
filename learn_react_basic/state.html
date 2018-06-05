@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.1/react-dom.js"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/create-react-class@15.6.2/create-react-class.js"></script>
+
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      var MessageBox = React.createClass({
+        alertMe:function(){
+          alert('点击');
+        },
+        getInitialState:function () {
+          return {
+            clickCountNum:0
+          }
+        },
+        handleClick:function () {
+          this.setState({
+            clickCountNum:this.state.clickCountNum+1
+          })
+        },
+        render:function () {
+          var submessages = [];
+          for(var i=0;i<10;i++){
+            submessages.push(
+              <SubmessageBox key={i}/>
+            )
+          }
+          return (
+            <div>
+              <div>
+                <button onClick={this.handleClick}>点击+1</button>
+                <p>点击次数：{this.state.clickCountNum}</p>
+              </div>
+              <h1 onClick={this.alertMe}>hello</h1>
+              {submessages}
+            </div>
+            )
+        }
+      })
+      var SubmessageBox = React.createClass({
+        render:function () {
+          return ( <div>children</div> )
+        }
+      })
+      ReactDOM.render(
+        <MessageBox/>,
+        document.getElementById('root'),
+        function () {
+          console.log('渲染完成');
+        }
+      )
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.1/react-dom.js"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/create-react-class@15.6.2/create-react-class.js"></script>
+
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      var MessageBox = React.createClass({
+        getInitialState:function () {
+          return {
+            messageList:[
+              'one',
+              'two',
+              'three'
+            ]
+          }
+        },
+        render:function () {
+          return (
+            <div>
+              <div>{this.props.title}</div>
+              <SubmessageBox message={this.state.messageList}/>
+            </div>
+            )
+        }
+      })
+      var SubmessageBox = React.createClass({
+        getDefaultProps:function () {
+          return{
+            message:['默认消息']
+          }
+        },
+        render:function () {
+          var msg = []
+          this.props.message.forEach((item,index)=>{
+            msg.push(
+              <p key={index}>{item}</p>
+            )
+          })
+          return ( <div>{msg}</div> )
+        }
+      })
+      var title = 'this is message->global';
+      ReactDOM.render(
+        <MessageBox title={title}/>,
+        document.getElementById('root'),
+        function () {
+          console.log('渲染完成');
+        }
+      )
+
+    </script>
+  </body>
+</html>
