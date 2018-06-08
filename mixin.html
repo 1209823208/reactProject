@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Hello World</title>
+
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.1/react-dom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/create-react-class@15.6.2/create-react-class.js"></script>
+  <script src="https://unpkg.com/react@15/dist/react-with-addons.js"></script>
+
+
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  var stateRecordMixin = {
+    componentWillMount: function () {
+      this.oldStates = [];
+    },
+    componentDidUpdate: function (nextProp, nextState) {
+      console.log('nextState',nextState);
+      this.oldStates.push(nextState);
+      console.log('this.oldStates',this.oldStates);
+    },
+    previewState: function () {
+      console.log('previewState:this.oldStates',this.oldStates);
+
+      var index = this.oldStates.length - 1;
+      return index <0 ? {} : this.oldStates[index];
+    }
+  };
+  var MessageBox = React.createClass({
+    mixins: [stateRecordMixin],
+    getInitialState: function () {
+      return {
+        count: 0,
+      }
+    },
+    doUpdate: function () {
+      this.setState({
+        count: this.state.count += 1,
+      })
+    },
+    render: function () {
+      return (
+        <div>
+          <h1>上次计数：{this.previewState().count}</h1>
+          <h1>本次计数：{this.state.count}</h1>
+          <button onClick={this.doUpdate}>更新</button>
+        </div>
+      )
+    }
+  });
+  var SubComponent = React.createClass({
+    mixins: [stateRecordMixin],
+    getInitialState: function () {
+      return {
+        count: 1,
+      }
+    },
+    doUpdate: function () {
+      this.setState({
+        count: this.state.count *2,
+      })
+    },
+    render: function () {
+      return (
+        <div>
+          <h1>上次计数：{this.previewState().count}</h1>
+          <h1>本次计数：{this.state.count}</h1>
+          <button onClick={this.doUpdate}>更新</button>
+        </div>
+      )
+    }
+  });
+  ReactDOM.render(
+    <MessageBox/>,
+    document.getElementById('root'),
+    function () {
+      console.log('渲染完成');
+    }
+  )
+
+</script>
+</body>
+</html>
