@@ -18,6 +18,7 @@ file-loader
 url-loader
 #小图标工具
 font-awesome
+import 'font-awesome/css/font-awesome.min.css';
 #打包提出公共模块
 CommonsChunkPlugin
 #
@@ -32,5 +33,4 @@ package.json中配置
     "disk": "node_modules/.bin/webpack"
   }
 启动项目:npm run dev
-
-## Development server
+# 
