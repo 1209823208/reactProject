@@ -1,1 +1,4 @@
-node_module
+node_modules
+.git
+.idea
+.DS_Store
