@@ -11,6 +11,7 @@ module.exports = {
     filename: 'js/app.js'
   },
   resolve: {
+    extensions:['.js','.jsx'],//省略后缀名
     alias: {
       page: path.resolve(__dirname, 'src/page'),
       component: path.resolve(__dirname, 'src/component'),

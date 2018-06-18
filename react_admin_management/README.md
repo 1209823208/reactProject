@@ -1,6 +1,6 @@
 ## html打包
 ```
-  html-webpack-plugin
+  html-webpack-plugin 将编译好的js引入入口index.html中
 ```
 ## ES6打包
 ```
