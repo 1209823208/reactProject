@@ -58,6 +58,10 @@
 ```
   npm run dev
 ```
+## 分页插件:
+```
+rc-pagination
+```
 ## 请求接口代理映射
 ```
 devServer: {
