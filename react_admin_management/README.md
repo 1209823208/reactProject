@@ -58,3 +58,26 @@
 ```
   npm run dev
 ```
+## 请求接口代理映射
+```
+devServer: {
+    proxy : {
+      '/manage' : {
+          target: 'http://admintest.happymmall.com',
+          changeOrigin : true
+      }
+    }
+  }
+ Request URL: http://localhost:8080/manage/user/login.do
+ Request URL: http://admintest.happymmall.com/manage/user/login.do
+```
+## fetch :
+```
+  post请求：login
+  get请求：
+```
+## 评价：
+```
+  UI框架有点老：bootstrap
+  数据请求有点老：jquery
+```
