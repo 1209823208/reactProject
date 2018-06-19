@@ -369,7 +369,7 @@ class Hello extends React.Component {
 
 - **`comopentDidMount`**
 
-组件第一次加载时渲染完成的事件，一般在此获取网络数据。实际开始项目开发时，会经常用到。
+组件第一次加载时渲染完成的事件，一般在此获取网络数据[例如：ajax]。实际开始项目开发时，会经常用到。
 
 - **`shouldComponentUpdate`**
 

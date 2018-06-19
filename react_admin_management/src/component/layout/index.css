@@ -5,7 +5,7 @@ http://creativecommons.org/licenses/by/3.0/
 ------------------------------------------------*/
 
 /*----------------------------------------------
-    COMMON  STYLES    
+    COMMON  STYLES
 ------------------------------------------------*/
 body {
     font-family: 'Open Sans', sans-serif;
@@ -111,7 +111,7 @@ p {
 }
 
 /*----------------------------------------------
-   DASHBOARD STYLES    
+   DASHBOARD STYLES
 ------------------------------------------------*/
 .page-header {
     padding-bottom: 9px;
@@ -231,6 +231,7 @@ p {
 .brown {
     background-color: #f0ad4e;
     color: #fff;
+    text-align: center;
 }
 
 .back-footer-red {
@@ -376,7 +377,7 @@ footer p {
 }
 
 /*----------------------------------------------
-    MENU STYLES    
+    MENU STYLES
 ------------------------------------------------*/
 
 .user-image {
@@ -586,7 +587,7 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 /*----------------------------------------------
-    UI ELEMENTS STYLES     
+    UI ELEMENTS STYLES
 ------------------------------------------------*/
 .btn-circle {
     width: 50px;
@@ -601,7 +602,7 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 /*----------------------------------------------
-    MEDIA QUERIES     
+    MEDIA QUERIES
 ------------------------------------------------*/
 
 @media (max-width: 768px) {
@@ -637,5 +638,3 @@ ul.nav.nav-second-level.collapse.in {
         font-size: 19px;
     }
 }
-
-

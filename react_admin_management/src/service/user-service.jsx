@@ -26,7 +26,7 @@ class User{
                 status:false,
                 msg:'密码不能为空'
             }
-        } 
+        }
         return {
             status:true,
             msg:'数据格式正确'
@@ -39,5 +39,14 @@ class User{
             url     : '/user/logout.do'
         });
     }
+    getUserList(pageNum){
+        return _mm.request({
+            type    : 'post',
+            url     : '/manage/user/list.do',
+            data    : {
+                pageNum : pageNum
+            }
+        });
+    }
 }
-export default User; 
+export default User;
