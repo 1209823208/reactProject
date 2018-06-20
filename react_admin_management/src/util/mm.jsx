@@ -38,7 +38,6 @@ class MUtil{
         let quersyList = window.location.search;
         if(quersyList){
             let params_arr = quersyList.split('&');
-            console.log('params_arr',params_arr);
             for(let item of params_arr){
                 if(item.indexOf(name)>-1){
                     return item.split('=')[1];

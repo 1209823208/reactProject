@@ -7,8 +7,10 @@ export default class Pagination extends React.Component {
   }
   render() {
     return (
-      <div>
-        <RcPagination {...this.props} showQuickJumper hideOnSinglePage/>
+      <div className="row">
+        <div className="col-md-12">
+          <RcPagination {...this.props} showQuickJumper hideOnSinglePage/>
+        </div>
       </div>
     );
   }

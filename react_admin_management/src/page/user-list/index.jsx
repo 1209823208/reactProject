@@ -6,7 +6,7 @@ import User from 'service/user-service.jsx';
 import MUtil from 'util/mm.jsx';
 const _mm = new MUtil();
 const _user = new User();
-
+import TableList from 'util/table-list/index.jsx';
 export default class UserList extends React.Component {
   constructor(props){
     super(props);
@@ -16,9 +16,10 @@ export default class UserList extends React.Component {
     }
   }
   onChange(page) {
-    console.log(page);
     this.setState({
-      pageNum: page,
+        pageNum: page,
+      }, () => {
+        this.loadUserList();
     });
   }
   componentDidMount(){
@@ -46,29 +47,12 @@ export default class UserList extends React.Component {
         </tr>
       )
     })
-    let nodata = <tr><td colSpan="5">暂无数据</td></tr>
-    let tableData = this.state.list.length>0?userList:nodata
     return (
       <div id="page-wrapper">
         <div id="UserList">
             <PageTitle title="用户列表" />
-            <div className="row">
-                <div className="col-md-12">
-                  <table className="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>id</th>
-                        <th>用户名</th>
-                        <th>电话</th>
-                        <th>email</th>
-                        <th>时间</th>
-                      </tr>
-                    </thead>
-                    <tfoot>{tableData}</tfoot>
-                  </table>
-                  <Pagination onChange={this.onChange.bind(this)} current={this.state.pageNum} total={this.state.total}/>
-                </div>
-            </div>
+            <TableList tableHeader={['ID','用户名','电话','email','日期']}>{userList}</TableList>
+            <Pagination onChange={this.onChange.bind(this)} current={this.state.pageNum} total={this.state.total}/> 
         </div>
       </div>
     );

@@ -10,7 +10,7 @@ export default class Login extends React.Component {
         this.state = {
             username:'',
             password:'',
-            redirect:_mm.getUrlParams('redirect')||'/'
+            redirect:decodeURIComponent(_mm.getUrlParams('redirect'))||'/'
         }
     }
     // 数据双向绑定

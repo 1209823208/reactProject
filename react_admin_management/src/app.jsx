@@ -8,6 +8,7 @@ import Home from 'page/home/index.jsx'
 import Login from 'page/login/index.jsx'
 import UserList from 'page/user-list/index.jsx'
 import ErrorPage from 'page/error/index.jsx'
+import ProductRouter from 'page/product/router.jsx'
 import Layout from 'component/layout/index.jsx'
 class App extends React.Component {
   render() {
@@ -15,8 +16,8 @@ class App extends React.Component {
       <Layout>
           <Switch>
               <Route exact path= '/' component={Home} />
-              <Route path= '/product/goods' component={Home} />
-              <Route path= '/product-category' component={Home} />
+              <Route path= '/product' component={ProductRouter} />
+              <Route path= '/product-category' component={ProductRouter} />
               <Route path="/user/index" component={UserList}/>
               <Redirect exact from="/user" to="/user/index"/>
               {/* 路由从上向下匹配，匹配成功 break,匹配不到就执行最后一行ErrorPage页面 */}

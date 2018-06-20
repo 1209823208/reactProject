@@ -281,7 +281,7 @@ Hello 页面会用到 Header，以后的其他页面也会用到 Header ，我�
 ## props && state
 
 上面提到了 props 不能被自身修改，如果组件内部自身的属性发生变化，该怎么办？—— React 为我们提供给了 `state`，先看一个demo：
-
+setState有回调函数
 ```jsx
 class Hello extends React.Component {
     constructor(props, context) {
@@ -291,6 +291,13 @@ class Hello extends React.Component {
             now: Date.now()
         }
     }
+    handleClick(){
+        this.setState({
+            pageNum: page,
+        }, () => {
+            this.loadUserList();
+        });
+    }
     render() {
         return (
             <div>
@@ -299,6 +306,7 @@ class Hello extends React.Component {
         )
     }
 }
+
 ```
 
 还有一点非常重要，**React 会实时监听每个组件的 props 和 state 的值，一旦有变化，会立刻更新组件，将结果重新渲染到页面上**，下面demo演示了`state`的变化，`props`也是一样的

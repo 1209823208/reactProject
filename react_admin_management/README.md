@@ -84,4 +84,5 @@ devServer: {
 ```
   UI框架有点老：bootstrap
   数据请求有点老：jquery
+  理由实战不错：可以直接看代码
 ```
