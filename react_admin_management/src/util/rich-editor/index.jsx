@@ -9,6 +9,11 @@ export default class RichEditor extends React.Component {
   componentDidMount(){
     this.loadEditor();
   }
+  componentWillReceiveProps(nextProps){
+    if(this.props.defaultDetail !== nextProps.defaultDetail){
+        this.editor.setValue(nextProps.defaultDetail);
+    }
+  }
   // 初始化编辑
   loadEditor(){
     let element = this.refs['textarea'];

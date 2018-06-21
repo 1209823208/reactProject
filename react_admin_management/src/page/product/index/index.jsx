@@ -90,7 +90,7 @@ export default class ProductIndex extends React.Component {
           </td>
           <td>
               <Link to={`/product/detail/${item.id}`}>详情</Link><br/>
-              <Link to={`/product/edit/${item.id}`}>编辑</Link>
+              <Link to={`/product/save/${item.id}`}>编辑</Link>
           </td>
         </tr>
       )
@@ -115,7 +115,7 @@ export default class ProductIndex extends React.Component {
             </PageTitle>
             <ProductSearchList onSearch={(searchType,searchKeyWord)=>{this.onSearch(searchType,searchKeyWord)}}/>
             <TableList tableHeader={tableHeader}>{productList}</TableList>
-            <Pagination onChange={this.onChange.bind(this)} current={this.state.pageNum} total={this.state.total}/> 
+            <Pagination onChange={this.onChange.bind(this)} current={this.state.pageNum} total={this.state.total}/>
         </div>
       </div>
     );

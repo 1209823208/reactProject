@@ -9,60 +9,84 @@ export default class CategorySelector extends React.Component {
     this.state = {
       firstCategoryId:0,
       firstCategoryList:[],
-      secondCategoryId:'',
+      secondCategoryId:0,
       secondCategoryList:[],
     }
   }
   componentDidMount(){
-    this.getParentCategory()
+    this.getFirstCategory();
+  }
+  componentWillReceiveProps(nextProps){
+      let categoryIdChange        = this.props.categoryId !== nextProps.categoryId,
+          parentCategoryIdChange  = this.props.parentCategoryId !== nextProps.parentCategoryId;
+      // 数据没有发生变化的时候，直接不做处理
+      if(!categoryIdChange && !parentCategoryIdChange){
+          return;
+      }
+      // 假如只有一级品类
+      if(nextProps.parentCategoryId === 0){
+          this.setState({
+              firstCategoryId     : nextProps.categoryId,
+              secondCategoryId    : 0
+          });
+      }
+      // 有两级品类
+      else{
+          this.setState({
+              firstCategoryId     : nextProps.parentCategoryId,
+              secondCategoryId    : nextProps.categoryId
+          }, () => {
+              parentCategoryIdChange && this.getSecondCategory();
+          });
+      }
+
   }
   // 获取一级分类
-  getParentCategory(){
-    let categoryId = this.state.firstCategoryId;
-    _product.getCategoryList(categoryId).then(res=>{
-      if(categoryId===0){
-        this.setState({
-          firstCategoryList:res,
-          firstCategoryId:res[0].id
-        },()=>{
-            this.getParentCategory()
-        })
-      }else{
-        if(res.length>0){
-          this.setState({
-            secondCategoryList:res,
-            secondCategoryId:res[0].id
-          },()=>{
-            this.onPropsCategoryChange()
-          })
-        }else{
-          this.setState({
-            secondCategoryList:[],
-            secondCategoryId:0
-          },()=>{
-            this.onPropsCategoryChange()
-          })
-        }
-      }
+  getFirstCategory(){
+    _product.getCategoryList().then(res=>{
+      this.setState({
+        firstCategoryList:res
+      })
     },errMsg=>{
       _mm.errorTips(errMsg);
     })
   }
-  // 获取二级分类
-  getSecondCategory(e,flag){
-    if(flag === 'first'){
+  getSecondCategory(){
+    let categoryId = this.state.firstCategoryId;
+    _product.getCategoryList(categoryId).then(res=>{
       this.setState({
-        firstCategoryId:e.target.value
-      },()=>{
-        this.getParentCategory()
+        secondCategoryList:res
       })
-    }else{
+    },errMsg=>{
+      _mm.errorTips(errMsg);
+    })
+  }
+  // 改变一级分类的值
+  updateFirstCategory(e){
+    if(this.props.readOnly){
+      return;
+    }
+    let newValue = e.target.value || 0;
+    this.setState({
+        firstCategoryId     : newValue,
+        secondCategoryId    : 0,
+        secondCategoryList  : []
+    }, () => {
+        // 更新二级品类
+        this.getSecondCategory();
+        this.onPropsCategoryChange();
+    });
+  }
+  // 获取二级分类
+  updateSecondCategory(e){
+      if(this.props.readOnly){
+        return;
+      }
       this.setState({
         secondCategoryId:e.target.value
       },()=>{
         this.onPropsCategoryChange()
       })
-    }
   }
   // 传给父组件选中的结果
   onPropsCategoryChange(){
@@ -91,15 +115,17 @@ export default class CategorySelector extends React.Component {
     return (
       <div className="col-sm-12">
         <select className="form-control cate-select"
+        readOnly = {this.props.readOnly}
         value={this.state.firstCategoryId}
-        onChange={(e)=>{this.getSecondCategory(e,'first')}}>
+        onChange={(e)=>{this.updateFirstCategory(e)}}>
           {firstCategoryHtml}
         </select>
         {
           this.state.secondCategoryList.length>0
           ?<select className="form-control cate-select"
+          readOnly = {this.props.readOnly}
           value={this.state.secondCategoryId}
-          onChange={(e)=>{this.getSecondCategory(e,'second')}}>
+          onChange={(e)=>{this.updateSecondCategory(e)}}>
           { secondCategoryHtml}
           </select>
           :''
