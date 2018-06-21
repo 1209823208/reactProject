@@ -32,5 +32,13 @@ class Product{
           }
       });
     }
+    // 新增商品
+    addGoods(params){
+        return _mm.request({
+            type    : 'post',
+            url     : '/manage/product/save.do',
+            data    : params
+        });
+    }
 }
 export default Product;

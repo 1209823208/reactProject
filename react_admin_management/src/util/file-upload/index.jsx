@@ -14,11 +14,9 @@ export default class FileUploader extends React.Component {
       chooseAndUpload:true,
       fileFieldName   : 'upload_file',
       uploadSuccess : (res)=>{
-        console.log('res',res);
         this.props.onUploadSuccess(res.data);
     },
     uploadError :(err)=>{
-        console.log('err',err);
         this.props.onUploadSuccess(err.message || '上传图片出错啦');
       }
   	}

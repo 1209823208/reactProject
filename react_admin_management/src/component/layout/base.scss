@@ -15,3 +15,39 @@
     display: block;
     color: #fff
 }
+
+.clearfix:after {content: "";height: 0;visibility: hidden;overflow: hidden;display: block; clear: both;}
+.fl{float:left;}
+.fr{float:right;}
+.add-product-img-list{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.add-product-img-list>.imgIcon{
+    width: 80px;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    position: relative;
+}
+.add-product-img-list>.imgIcon>.delImg{
+    position: absolute;
+    background: #aaa;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 0.3;
+    text-align: center;
+    display: none;
+}
+.add-product-img-list>.imgIcon:hover>.delImg{
+    display: block
+}
+.add-product-img-list>.imgIcon>img{
+    width: 100%
+}
+.simditor .simditor-body img, .editor-style img{
+    max-width: 50%;
+    max-height: 50%
+}
