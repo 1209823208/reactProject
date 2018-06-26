@@ -80,6 +80,11 @@ devServer: {
   post请求：login
   get请求：
 ```
+## 登录 :
+```
+  账号：admin
+  密码：admin
+```
 ## 评价：
 ```
   UI框架有点老：bootstrap
