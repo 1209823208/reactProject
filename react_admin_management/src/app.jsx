@@ -10,6 +10,8 @@ import UserList from 'page/user-list/index.jsx'
 import ErrorPage from 'page/error/index.jsx'
 import ProductRouter from 'page/product/router.jsx'
 import Layout from 'component/layout/index.jsx'
+import OrderIndex from 'page/order/index.jsx';
+import OrderDetail from 'page/order/detail.jsx';
 class App extends React.Component {
   render() {
     let route_list = (
@@ -19,7 +21,10 @@ class App extends React.Component {
               <Route path= '/product' component={ProductRouter} />
               <Route path= '/product-category' component={ProductRouter} />
               <Route path="/user/index" component={UserList}/>
+              <Route path= '/order/index/' component={OrderIndex} />
+              <Route path= '/order/detail/:orderNo' component={OrderDetail} />
               <Redirect exact from="/user" to="/user/index"/>
+              <Redirect exact from="/order" to="/order/index"/>
               {/* 路由从上向下匹配，匹配成功 break,匹配不到就执行最后一行ErrorPage页面 */}
               <Route component={ErrorPage} />
           </Switch>
