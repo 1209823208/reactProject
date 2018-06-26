@@ -86,4 +86,5 @@ devServer: {
   数据请求有点老：jquery
   理由实战不错：可以直接看代码
   /product/save/26：编辑商品模块，父子之间通信值得学习
+  /product-category/index/:categoryId?：编辑品类模块，只有传值改变时，也会重新调用接口,重点是componentDidUpdate方法
 ```
