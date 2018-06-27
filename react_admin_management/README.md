@@ -80,6 +80,33 @@ devServer: {
   post请求：login
   get请求：
 ```
+## 线上部署 :
+```
+1、webpack配置
+  package.json:
+    "scripts": {
+      "dev": "node_modules/.bin/webpack-dev-server",
+      "dist"      : "WEBPACK_ENV=online node_modules/.bin/webpack -p",
+      "dist_win"  : "set WEBPACK_ENV=online&& node_modules/.bin/webpack -p"
+    },
+  webpack.config.js:
+    let WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
+  // npm run dist 多一个dist文件夹
+2、服务器环境配置
+  进入服务器：ssh@XXX   XXX:域名
+  安装node:
+  安装npm：
+  安装git:
+          生成公钥，并添加在github上【添加公钥】
+  在服务器上建立文件，git clone代码
+  服务器上安装nginx
+3、进入项目目录【服务器】
+  npm初始化
+  npm run dist打包
+4、将3步骤写成脚本-参考base/deploy/fe-deploy.sh 这个是linux脚本
+5、nginx和域名配置
+  
+```
 ## 登录 :
 ```
   账号：admin
@@ -88,8 +115,10 @@ devServer: {
 ## 评价：
 ```
   UI框架有点老：bootstrap
-  数据请求有点老：jquery
-  理由实战不错：可以直接看代码
+  数据请求有点老：jquery->可以更换为fetch
+
+  webpack配置值得学习
+  路由实战不错：可以直接看代码
   /product/save/26：编辑商品模块，父子之间通信值得学习
   /product-category/index/:categoryId?：编辑品类模块，只有传值改变时，也会重新调用接口,重点是componentDidUpdate方法
 ```
